@@ -14,7 +14,7 @@ app
 							console.log("UserController...")
 							var self = this;
 							self.user = {
-								userId : '',
+								id : '',
 								name : '',
 								email : '',
 								password : '',
@@ -172,7 +172,7 @@ app
 
 							self.reset = function() {
 								self.user = {
-									userId : '',
+									id : '',
 									name : '',
 									email : '',
 									password : '',
@@ -187,4 +187,16 @@ app
 								$scope.myForm.$setPristine(); // reset Form
 							};
 
+							
+							self.myprofile = function(){
+								console.log("myProfile...")
+								UserService.myprofile($rootScope.currentUser.id)
+								.then(function(d){
+									self.user=d;
+									$location.path("/myprofile")
+								},
+								function(errResponse){
+									console.error('Error while fetching profile.');
+								})
+							}
 						} ]);

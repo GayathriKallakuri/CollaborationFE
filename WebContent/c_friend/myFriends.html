@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+   table, th , td {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+   }
+   
+   table tr:nth-child(odd) {
+      background-color: #f2f2f2;
+   }
+
+   table tr:nth-child(even) {
+      background-color: #ffffff;
+   }
+</style>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <div class="container" ng-controller="FriendController as ctrl">
+<table>
+<tr >
+<th>Friend ID</th>
+<th>UserID</th>
+<th>Status</th>
+
+</tr>
+<tr ng-repeat="myFriend in ctrl.myFriends">
+<td>{{myFriend.friendID}}</td>
+<td>{{myFriend.userID}}</td>
+<td>{{myFriend.status}}</td>
+
+</tr>
+</table>
+
+</div>
+ 
+
+</body>
+</html>

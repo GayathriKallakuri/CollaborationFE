@@ -5,8 +5,8 @@ app
 				[
 						'$http',
 						'$q',
-						'$rootscope',
-						function($http, $q, $rootscope) {
+						'$rootScope',
+						function($http, $q, $rootScope) {
 							console.log("UserService...")
 							var BASE_URL = "http://localhost:8081/CollaborationBackEnd"
 							return {
@@ -55,7 +55,7 @@ app
 								createUser : function(user) {
 									console.log("calling create user");
 									return $http
-											.get(BASE_URL + '/user/', user)
+											.post(BASE_URL + '/user/', user)
 											.then(
 													function(response) {
 														return response.data;
@@ -71,7 +71,7 @@ app
 								updateUser : function(user, id) {
 									console.log("calling update user");
 									return $http
-											.put(BASE_URL + '/user/', user)
+											.put(BASE_URL + '/userUpdate/', user)
 											.then(
 													function(response) {
 														return response.data;
@@ -82,6 +82,19 @@ app
 														return $q
 																.reject(errResponse);
 													});
+								},
+								
+								myprofile: function(id){
+									console.log("myprofile call from backend")
+									return $http.get(BASE_URL+'/user/'+id)
+									.then(
+											function(response){
+												return response.data;
+											},
+											function(errResponse){
+												console.error('Error while updating user');
+												return $q.reject(errResponse);
+											});
 								},
 
 								logout : function() {
