@@ -7,6 +7,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-cookies.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
 
@@ -43,10 +45,16 @@
 						data-toggle="dropdown">Friends<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#/searchFriend">Search Friend</a></li>
-							<li><a href="#/myFriends">My Friends</a></li>
+								<li><a href="#/friends">My Friends</a></li>
+								<li><a href="#/viewFriendRequest">My requests</a></li>
 						</ul></li>
-
-					<li><a href="#/event">Events</a></li>
+						
+						<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown">Event<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/eventsList">Events</a></li>
+							
+						</ul></li>
 
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown">Chat<span class="caret"></span></a>
@@ -54,6 +62,7 @@
 							<li><a href="#/chat_forum">Group Chat</a></li>
 							
 						</ul></li>
+						
 						<div ng-show="currentUser.role=='admin'">
 					<li><a href="#/adminHome">Admin</a></li>
 					</div>
@@ -101,5 +110,15 @@
 
 <script src="c_friend/FriendController.js"></script>
 <script src="c_friend/FriendService.js"></script>
+
+<script src="c_event/EventController.js"></script>
+<script src="c_event/EventService.js"></script>
+
+<script src="c_chat_forum/ChatForumController.js"></script>
+<script src="c_chat_forum/ChatForumService.js"></script>
+
+<script src="c_chat/ChatController.js"></script>
+<script src="c_chat/ChatService.js"></script>
+
 
 </html>

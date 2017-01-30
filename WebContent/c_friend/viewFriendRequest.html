@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+hi
+<div class="container" ng-controller="FriendController as ctrl">
+   <table>
+<tr >
+<th>Name</th>
+<th>Status</th>
+
+</tr>
+<tr ng-repeat="friend in ctrl.friends">
+<td>{{friend.userID}}</td>
+<td>{{friend.status}}</td>
+
+</tr>
+</table>
+          
+          
+       </div>   
+</body>
+</html>

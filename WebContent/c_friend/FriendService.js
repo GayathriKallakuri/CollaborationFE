@@ -46,13 +46,13 @@ app
 													});
 								},
 
-								getNewFriendRequests : function() {
+								getMyFriendRequests : function() {
 									console
 											.log("Getting new  requests sent to me")
 									return $http
 											.get(
 													BASE_URL
-															+ '/getNewFriendRequests/')
+															+ '/getMyFriendRequests/')
 											.then(
 													function(response) {
 														return response.data;
@@ -64,59 +64,31 @@ app
 																.reject(errResponse);
 													});
 								},
-
-								accept : function(friend, id) {
+								
+								accept: function(friend,id){
 									console.log("accepting in friend")
-									return $http
-											.put(
-													BASE_URL + '/acceptFriend/'
-															+ friend.id, friend)
-											.then(
-													function(response) {
-														return response.data;
-													},
-													function(errResponse) {
-														console
-																.error('Error while friend user');
-														return $q
-																.reject(errResponse);
-													});
+									return $http.put(BASE_URL+'/friendaccept/'+friend.id,friend)
+									.then(
+											function(response){
+												return response.data;
+											},
+											function(errResponse){
+												console.error('Error while friend user');
+												return $q.reject(errResponse);
+											});
 								},
-
-								reject : function(friend, id) {
+								
+								reject: function(friend,id){
 									console.log("rejecting in friend")
-									return $http
-											.put(
-													BASE_URL + '/rejectFriend/'
-															+ friend.id, friend)
-											.then(
-													function(response) {
-														return response.data;
-													},
-													function(errResponse) {
-														console
-																.error('Error while friend user');
-														return $q
-																.reject(errResponse);
-													});
-								},
-
-								unFriend : function(friend, id) {
-									console.log("unfriending friend")
-									return $http
-											.put(
-													BASE_URL + '/unFriend/'
-															+ friend.id, friend)
-											.then(
-													function(response) {
-														return response.data;
-													},
-													function(errResponse) {
-														console
-																.error('Error while unfriending user');
-														return $q
-																.reject(errResponse);
-													});
+									return $http.put(BASE_URL+'/friendreject/'+friend.id,friend)
+									.then(
+											function(response){
+												return response.data;
+											},
+											function(errResponse){
+												console.error('Error while friend user');
+												return $q.reject(errResponse);
+											});
 								},
 
 								sendFriendRequest : function(friendID) {

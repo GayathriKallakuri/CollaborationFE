@@ -77,6 +77,32 @@ app
 																.reject(errResponse);
 													});
 								},
+								
+								accept: function(jobapplied,id){
+									console.log("accepting in service")
+									return $http.put(BASE_URL+'/jobaccept/'+jobapplied.id,jobapplied)
+									.then(
+											function(response){
+												return response.data;
+											},
+											function(errResponse){
+												console.error('Error while updating jobapplied');
+												return $q.reject(errResponse);
+											});
+								},	
+								
+								reject: function(jobapplied,id){
+									console.log("rejecting in service")
+									return $http.put(BASE_URL+'/jobreject/'+jobapplied.id,jobapplied)
+									.then(
+											function(response){
+												return response.data;
+											},
+											function(errResponse){
+												console.error('Error while updating jobapplied');
+												return $q.reject(errResponse);
+											});
+								},	
 
 								rejectJobApplication : function(userID, jobID) {
 									return $http

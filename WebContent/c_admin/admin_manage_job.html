@@ -2,19 +2,23 @@
 <html>
 <head>
 <style>
-   table, th , td {
-      border: 1px solid grey;
+   table {
+     
       border-collapse: collapse;
-      padding: 5px;
+    width: 100%;
    }
    
-   table tr:nth-child(odd) {
-      background-color: #f2f2f2;
-   }
+ th, td {
+    text-align: left;
+    padding: 8px;
+}
 
-   table tr:nth-child(even) {
-      background-color: #ffffff;
-   }
+tr:nth-child(even){background-color: #7FFFD4}
+
+th {
+    background-color: 		#20B2AA;
+    color: white;
+}
 </style>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -28,6 +32,7 @@ Job applications
 <th>UserName</th>
 <th>Status</th>
 <th>Remarks</th>
+<th>Operation</th>
 </tr>
 <tr ng-repeat="jobapplied in ctrl.jobsapplied">
 <td>{{jobapplied.jobID}}</td>
@@ -35,9 +40,9 @@ Job applications
 <td>{{jobapplied.status}}</td>
 <td>{{jobapplied.remarks}}</td>
 <td>
-<button ng-click="ctrl.selectUser(job.id)"><strong>Accept</strong>
+<button ng-click="ctrl.jobaccept(jobapplied)" class="btn btn-primary btn-sm"><strong>Accept</strong>
               </button>
-                        <button ng-click="ctrl.rejectJobApplication(job.id)"><strong>Reject</strong>
+                        <button ng-click="ctrl.jobreject(jobapplied)" class="btn btn-primary btn-sm"><strong>Reject</strong>
                         </button>   
                          </td>
 </tr>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+hi
+<div ng-controller="FriendController as ctrl">
+<div ng-repeat="friend in ctrl.friends">
+<div class="form-group">
+Friend ID:<label>{{friend.friendID}}</label><br>
+UserName:<label>{{friend.userID}}</label><br>
+Status:<label>{{friend.status}}</label><br>
+
+</div>
+</div>
+
+<!-- Modal
+<div id="myModal" class="modal fade" role="dialog">
+<div class="modal-dialog modal-sm">
+Modal content
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title">Private chat</h4>
+
+</div>
+<div class="modal-body">
+<div ng-controller="ChatController" class="container">
+<p ng-repeat="message in messages | orderBy:'time':false" class="message">
+<time>{{message.time | date:'HH:mm'}}</time>
+<span>{{message.message}}</span></p>
+
+<form mg-submit="addMessage(friendID) name="messageForm">
+<input type="textarea" rows="4" cols="100" placeholder="new message..." ng-model="message"/><br>
+<input type="text" ng-model="friendID" value="supriya">
+<button>Send</button>
+</form>
+<hr/>
+</div></div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+</div>
+</div>
+</div>
+</div> -->
+</div>
+</body>
+</html>

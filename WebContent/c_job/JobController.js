@@ -207,6 +207,34 @@ app
 															.error('unable to get job details...');
 												});
 							};
+							
+							self.jobaccept = function(jobapplied){
+								{
+									self.accept(jobapplied,jobapplied.id);
+								}
+							};
+
+							self.accept =function (jobapplied,id){
+								console.log('accepting the jobapplied');
+								JobService.accept(jobapplied,id).then(self.getAllJobsApplied,
+								  function(errresponse){
+									console.log('Error while accepting jobapplied')
+								});
+							};
+							
+							self.jobreject = function(jobapplied){
+								{
+									self.reject(jobapplied,jobapplied.id);
+								}
+							};
+
+							self.reject =function (jobapplied,id){
+								console.log('rejecting the jobapplied');
+								JobService.reject(jobapplied,id).then(self.getAllJobsApplied,
+								  function(errresponse){
+									console.log('Error while rejecting jobapplied')
+								});
+							};
 
 							self.reset = function() {
 								console.log('resetting the job');

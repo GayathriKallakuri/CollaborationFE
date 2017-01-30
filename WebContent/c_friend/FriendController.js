@@ -1,5 +1,4 @@
 'use strict';
-
 app
 		.controller(
 				'FriendController',
@@ -8,111 +7,89 @@ app
 						'$scope',
 						'FriendService',
 						'$location',
+						'$routeParams',
 						'$rootScope',
 						function(UserService, $scope, FriendService, $location,
-								$rootScope) {
-							console.log("Friend Controller....")
-
+								$routeParams, $rootScope) {
+							console.log("FriendController....")
 							var self = this;
+
 							self.friend = {
 								id : '',
 								userID : '',
 								friendID : '',
-								status : '',
-								isOnline : '',
-								errorMessage : '',
-								errorCode : ''
+								status : ''
 							};
 
 							self.friends = [];
+							
 
 							self.user = {
 								id : '',
 								name : '',
-								email : '',
 								password : '',
-								address : '',
+								email : '',
 								contact : '',
+								address : '',
+								status : '',
 								isOnline : '',
 								role : '',
-								errorMessage : '',
-								errorCode : ''
+								errorCode : '',
+								errorMessage : ''
 							};
 
 							self.users = [];
-
+							
 							self.myfriend = {
-								id : '',
-								userID : '',
-								friendID : '',
-								status : '',
-								isOnline : '',
-								errorMessage : '',
-								errorCode : ''
-							};
-							self.myfriends = [];
+									id : '',
+									userID : '',
+									friendID : '',
+									status : ''
+								};
 
-							self.getMyFriends = function() {
-								console.log('Getting my friends...')
-								FriendService
-										.getMyFriends()
+								self.myfriends = [];
+							
+
+							self.getMyFriendRequests  = function() {
+								FriendService.getMyFriendRequests
 										.then(
 												function(d) {
 													self.myfriends = d;
 												},
 												function(errResponse) {
 													console
-															.error('Error while getting my friends....')
-												});
-							};
-							self.getMyFriends();
-
-							self.getMyFriendRequests = function() {
-								FriendService
-										.getMyFriendRequests()
-										.then(
-												function(d) {
-													self.friends = d;
-													$location.path = "/viewFriendRequest";
-												},
-												function(errResponse) {
-													console
-															.error('Error while getting requests...');
-												});
-							};
-
-							self.getRequestsSentByMe = function() {
-								FriendService
-										.getRequestsSentByMe()
-										.then(
-												function(d) {
-													self.friends = d;
-												},
-												function(errResponse) {
-													console
-															.error('Error while getting requests sent by you...');
+															.error('Error while getting friend requests')
 												});
 							};
 
 							self.sendFriendRequest = sendFriendRequest
 							function sendFriendRequest(friendID) {
-								console
-										.log("->sendFriendRequest : "
-												+ friendID)
+								console.log("send friendRequest:" + friendID)
 								FriendService
 										.sendFriendRequest(friendID)
 										.then(
 												function(d) {
 													self.friend = d;
-													alert("FriendRequest :"
-															+ self.friend.errorMessage)
+													alert("friend request sent")
 												},
-												function(errresponse) {
+												function(errResponse) {
 													console
 															.error('Error while sending friend request');
 												});
 							}
 							;
+
+							self.getMyFriends = function() {
+								FriendService.getMyFriends
+										.then(
+												function(d) {
+													self.friends = d;
+												},
+												function(errResponse) {
+													console
+															.error('Error while getting friends')
+												});
+							};
 
 							self.acceptFriendRequest = function(id) {
 								FriendService
@@ -160,8 +137,6 @@ app
 												});
 							};
 
-							self.fetchAllUsers();
-
 							self.deleteFriend = function(id) {
 								FriendService
 										.deleteFriend(id)
@@ -183,5 +158,8 @@ app
 															.error('Error while updating friend');
 												});
 							};
+							
+							self.fetchAllUsers();
+						
 
 						} ]);

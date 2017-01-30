@@ -48,7 +48,10 @@ app.controller('BlogController', [
 
 			self.createBlog = function(blog) {
 				console.log("create blogs...")
-				BlogService.createBlog(blog).then(self.fetchAllBlogs,
+				BlogService.createBlog(blog).then(self.fetchAllBlogs,function(response){
+					self.response = response.data
+					alert("Blog successfully created")
+				},
 						function(errResponse) {
 							console.error("Error while creating Blog");
 						});

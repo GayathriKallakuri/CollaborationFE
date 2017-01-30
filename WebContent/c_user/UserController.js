@@ -60,30 +60,33 @@ app
 
 							};
 
-							self.accept = function(id) {
-								console.log("accept....")
-								UserService
-										.accept(id)
-										.then(
-												self.fetchAllUsers,
-												function(errResponse) {
-													console
-															.error("Error while accepting a user...");
-												});
-
+							self.useraccept = function(user){
+								{
+									self.accept(user,user.id);
+								}
 							};
-
-							self.reject = function(id, reason) {
-								console.log("reject....")
-								UserService
-										.reject(id)
-										.then(
-												self.fetchAllUsers,
-												function(errResponse) {
-													console
-															.error("Error while rejecting a user...");
-												});
-
+					
+							self.accept =function (user,id){
+								console.log('accepting the user');
+								UserService.accept(user,id).then(self.fetchAllUsers,
+								  function(errresponse){
+									console.log('Error while accepting user')
+								});
+							};
+							
+							
+							self.userreject = function(user){
+								{
+									self.reject(user,user.id);
+								}
+							};
+					
+							self.reject =function (user,id){
+								console.log('rejecting the user');
+								UserService.reject(user,id).then(self.fetchAllUsers,
+								  function(errresponse){
+									console.log('Error while rejecting user')
+								});
 							};
 
 							self.updateUser = function(user, id) {
