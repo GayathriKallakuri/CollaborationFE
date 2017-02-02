@@ -8,9 +8,10 @@ app
 						'FriendService',
 						'$location',
 						'$routeParams',
+						'$http',
 						'$rootScope',
 						function(UserService, $scope, FriendService, $location,
-								$routeParams, $rootScope) {
+								$routeParams, $http, $rootScope) {
 							console.log("FriendController....")
 							var self = this;
 
@@ -22,7 +23,6 @@ app
 							};
 
 							self.friends = [];
-							
 
 							self.user = {
 								id : '',
@@ -39,19 +39,19 @@ app
 							};
 
 							self.users = [];
-							
+
 							self.myfriend = {
-									id : '',
-									userID : '',
-									friendID : '',
-									status : ''
-								};
+								id : '',
+								userID : '',
+								friendID : '',
+								status : ''
+							};
 
-								self.myfriends = [];
-							
+							self.myfriends = [];
 
-							self.getMyFriendRequests  = function() {
-								FriendService.getMyFriendRequests
+							self.getMyFriendRequests = function() {
+								FriendService
+										.getMyFriendRequests()
 										.then(
 												function(d) {
 													self.myfriends = d;
@@ -61,6 +61,7 @@ app
 															.error('Error while getting friend requests')
 												});
 							};
+							self.getMyFriendRequests();
 
 							self.sendFriendRequest = sendFriendRequest
 							function sendFriendRequest(friendID) {
@@ -80,7 +81,8 @@ app
 							;
 
 							self.getMyFriends = function() {
-								FriendService.getMyFriends
+								FriendService
+										.getMyFriends()
 										.then(
 												function(d) {
 													self.friends = d;
@@ -90,26 +92,43 @@ app
 															.error('Error while getting friends')
 												});
 							};
+							self.getMyFriends();
 
-							self.acceptFriendRequest = function(id) {
+							self.friendaccept = function(myfriend) {
+								{
+									self.accept(myfriend, myfriend.id);
+								}
+							};
+
+							self.accept = function(myfriend, id) {
+								console.log('accepting the user');
 								FriendService
-										.acceptFriendRequest(id)
+										.accept(myfriend, id)
 										.then(
-												self.fetchAllFriends,
-												function(errResponse) {
+												self.fetchAllUsers,
+												alert("Successfully accepted request..."),
+												function(errresponse) {
 													console
-															.error('Error while accepting friend request...')
+															.log('Error while accepting user')
 												});
 							};
 
-							self.rejectFriendRequest = function(id) {
+							self.friendreject = function(myfriend) {
+								{
+									self.reject(myfriend, myfriend.id);
+								}
+							};
+
+							self.reject = function(myfriend, id) {
+								console.log('rejecting the user');
 								FriendService
-										.rejectFriendRequest(id)
+										.reject(myfriend, id)
 										.then(
-												self.fetchAllFriends,
-												function(errResponse) {
+												self.fetchAllUsers,
+												alert("Successfully rejected request..."),
+												function(errresponse) {
 													console
-															.error('Error while rejecting friend request...')
+															.log('Error while rejecting user')
 												});
 							};
 
@@ -158,8 +177,7 @@ app
 															.error('Error while updating friend');
 												});
 							};
-							
+
 							self.fetchAllUsers();
-						
 
 						} ]);

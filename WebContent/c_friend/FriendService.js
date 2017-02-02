@@ -19,11 +19,14 @@ app
 											.get(BASE_URL + '/myFriends')
 											.then(
 													function(response) {
+														console.log('Friends are:')
 														return response.data;
 													},
 													function(errResponse) {
 														console
 																.error('Error while fetching Friends');
+														return $q
+														.reject(errResponse);
 
 													});
 								},
@@ -65,9 +68,9 @@ app
 													});
 								},
 								
-								accept: function(friend,id){
+								accept: function(myfriend,id){
 									console.log("accepting in friend")
-									return $http.put(BASE_URL+'/friendaccept/'+friend.id,friend)
+									return $http.put(BASE_URL+'/friendaccept/'+myfriend.id,myfriend)
 									.then(
 											function(response){
 												return response.data;
@@ -78,9 +81,9 @@ app
 											});
 								},
 								
-								reject: function(friend,id){
+								reject: function(myfriend,id){
 									console.log("rejecting in friend")
-									return $http.put(BASE_URL+'/friendreject/'+friend.id,friend)
+									return $http.put(BASE_URL+'/friendreject/'+myfriend.id,myfriend)
 									.then(
 											function(response){
 												return response.data;

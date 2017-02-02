@@ -88,6 +88,12 @@ app
 									console.log('Error while rejecting user')
 								});
 							};
+							
+							self.userupdate = function(user)
+							{
+								self.updateUser(self.user);
+							
+							}
 
 							self.updateUser = function(user, id) {
 								console.log("updateUser....")
@@ -95,6 +101,7 @@ app
 										.updateUser(user, id)
 										.then(
 												self.fetchAllUsers,
+												alert("User successfully updated"),
 												function(errResponse) {
 													console
 															.error("Error while updating user...");

@@ -39,7 +39,7 @@ app.factory('UserService', [
 
 				updateUser : function(user, id) {
 					console.log("updating in the service of user")
-					return $http.put(BASE_URL + '/user/' + user.id, user).then(
+					return $http.put(BASE_URL + '/userUpdate/' + user.id, user).then(
 							function(response) {
 								console.log("updated the  user in service")
 								return response.data;
@@ -60,7 +60,7 @@ app.factory('UserService', [
 							});
 				},
 
-				updateUser : function(user, id) {
+				/*updateUser : function(user, id) {
 					console.log("calling update user");
 					return $http.put(BASE_URL + '/userUpdate/', user).then(
 							function(response) {
@@ -69,7 +69,7 @@ app.factory('UserService', [
 								console.error('Error while updating user');
 								return $q.reject(errResponse);
 							});
-				},
+				},*/
 
 				myprofile : function(id) {
 					console.log("myprofile call from backend")
