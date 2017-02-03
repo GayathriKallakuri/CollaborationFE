@@ -93,6 +93,11 @@ controller : "UserController"
 		controller : 'FriendController'	
 })
 
+.when('/sentRequests',{
+	templateUrl : 'c_friend/sentRequests.html',
+		controller : 'FriendController'	
+})
+
 .when('/viewFriendRequest',{
 	templateUrl : 'c_friend/viewFriendRequest.html',
 		controller : 'FriendController'	

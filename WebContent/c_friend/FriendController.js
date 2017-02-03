@@ -49,6 +49,15 @@ app
 
 							self.myfriends = [];
 
+							self.myrequest = {
+									id : '',
+									userID : '',
+									friendID : '',
+									status : ''
+								};
+
+								self.myrequests = [];
+
 							self.getMyFriendRequests = function() {
 								FriendService
 										.getMyFriendRequests()
@@ -62,6 +71,20 @@ app
 												});
 							};
 							self.getMyFriendRequests();
+							
+							self.getRequestsSentByMe = function() {
+								FriendService
+										.getRequestsSentByMe()
+										.then(
+												function(d) {
+													self.myrequests = d;
+												},
+												function(errResponse) {
+													console
+															.error('Error while getting friend requests sent by me')
+												});
+							};
+							self.getRequestsSentByMe();
 
 							self.sendFriendRequest = sendFriendRequest
 							function sendFriendRequest(friendID) {
@@ -77,8 +100,8 @@ app
 													console
 															.error('Error while sending friend request');
 												});
-							}
-							;
+							};
+							
 
 							self.getMyFriends = function() {
 								FriendService

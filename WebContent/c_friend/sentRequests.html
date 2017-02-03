@@ -24,31 +24,30 @@ th {
 <title>Insert title here</title>
 </head>
 <body>
-Your friends<br><br>
+Your sent requests<br><br>
 <div class="container" ng-controller="FriendController as ctrl">
 
-  
+<div class="form-group has-feedback"></div>
+     
      Search for Friend
      
      
-     
-    <p><input type="text" ng-model="sear_text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <a href="#/sentRequests" class="button">Requests Sent</a>
-    </p> 
-<table>
+    <p><input type="text" ng-model="sear_text"></p>
+   <table>
 <tr >
 <th>Name</th>
 <th>Status</th>
-<th>Operation</th>
 
 </tr>
-<tr ng-repeat="friend in ctrl.friends | filter: sear_text">
-<td>{{friend.userID}}</td>
-<td>{{friend.status}}</td>
- <td><a href="#/chat" class="button">Send message</a></td>
+<tr ng-repeat="myrequest in ctrl.myrequests | filter: sear_text">
+<td>{{myrequest.friendID}}</td>
+<td>{{myrequest.status}}</td>
 
 </tr>
 </table>
-</div>
+           
+        
+          
+       </div>   
 </body>
 </html>
